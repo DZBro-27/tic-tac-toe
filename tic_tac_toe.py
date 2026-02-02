@@ -2,6 +2,17 @@ def run():  # Запуск игры
 
     print("Игра запустилась!!!")
 
+def create_board(n: int) -> list[list[str]]:
+    """Создание игрового поля размером n x n"""
+
+    board = []
+    for outer in range(n):
+        row = []
+        for inner in range(n):
+          row.append(" ")
+        board.append(row)
+    return board
+
 def draw_board(board):
     """Отрисовка игрового поля"""
     
@@ -23,12 +34,33 @@ def draw_board(board):
         print()
         print("-" * row_length)
 
-def create_board(n: int) -> list[list[str]]:
-    """Создание игрового поля размером n x n"""
-    board = []
-    for outer in range(n):
-        row = []
-        for inner in range(n):
-          row.append(" ")
-        board.append(row)
-    return board
+def get_move(board):
+  """Получение хода игрока"""
+  size = len(board)
+
+  while True:
+    move = input(f"Введите координаты хода (номер строки и столбца) через пробел от 1 до {size}: ")
+    
+    if len(move.split()) != 2:
+      print("Введите ДВА числа.")
+      continue
+
+    try:
+      # Преобразование введенных координат в индексы списка
+      row = int(move.split()[0]) - 1
+      col = int(move.split()[1]) - 1
+
+    except (ValueError, IndexError):
+      print("Неверно указаны координаты.")
+      continue
+
+    if not (0 <= row < size and 0 <= col < size):
+      print("Неверно указаны координаты.")
+      continue
+
+    if board[row][col] != " ":
+      print("Клетка занята!")
+      continue
+
+    else:
+      return row, col
