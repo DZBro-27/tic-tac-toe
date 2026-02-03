@@ -64,3 +64,12 @@ def get_move(board):
 
     else:
       return row, col
+
+def switch_player(current_player: str):
+  """Смена текущего игрока"""
+  
+  if current_player == "X":
+    return "O"
+
+  else:
+    return "X"
