@@ -1,9 +1,7 @@
-def run():  # Запуск игры
-
-    print("Игра запустилась!!!")
+"""Модуль для игры в крестики-нолики."""
 
 def create_board(n: int) -> list[list[str]]:
-    """Создание игрового поля размером n x n"""
+    """Создание игрового поля размером n x n."""
 
     board = []
     for outer in range(n):
@@ -14,7 +12,7 @@ def create_board(n: int) -> list[list[str]]:
     return board
 
 def draw_board(board):
-    """Отрисовка игрового поля"""
+    """Отрисовка игрового поля."""
     
     # Определяем длину строки игрового поля
     board_size = len(board)
@@ -35,7 +33,7 @@ def draw_board(board):
         print("-" * row_length)
 
 def get_move(board):
-  """Получение хода игрока"""
+  """Получение хода игрока."""
   size = len(board)
 
   while True:
@@ -66,10 +64,29 @@ def get_move(board):
       return row, col
 
 def switch_player(current_player: str):
-  """Смена текущего игрока"""
+  """Смена текущего игрока."""
   
   if current_player == "X":
     return "O"
 
   else:
     return "X"
+
+def make_move(board, row, col, current_player):
+  """Выполнение хода игрока."""
+  board[row][col] = current_player
+  
+
+
+def run():
+    """Запускает основной игровой цикл."""
+
+    board_size = 3
+    board = create_board()
+    current_player = "X"
+
+    while True:
+      draw_board(board)
+      print(f"Ходит игрок {current_player}")
+      row, col = get_move(board)
+      
