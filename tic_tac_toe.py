@@ -31,6 +31,8 @@ def draw_board(board):
       if row_index < (board_size- 1):
         print()
         print("-" * row_length)
+      else:
+        print()
 
 def get_move(board):
   """Получение хода игрока."""
@@ -76,17 +78,36 @@ def make_move(board, row, col, current_player):
   """Выполнение хода игрока."""
   board[row][col] = current_player
   
+def check_win(board, current_player):
+  """Проверка победы"""
 
+  # Проверка победного условия по строке  
+  for row in board:
+    row_win = True
+
+    for element in row:
+
+      if element != current_player:
+        row_win = False
+        break
+
+    if row_win == True:
+      return True
+
+  # Проверка победного условия по столбцу
+  
 
 def run():
     """Запускает основной игровой цикл."""
 
     board_size = 3
-    board = create_board()
+    board = create_board(3)
     current_player = "X"
 
-    while True:
-      draw_board(board)
-      print(f"Ходит игрок {current_player}")
-      row, col = get_move(board)
-      
+    #while True:
+    draw_board(board)
+    print("\n" f"Ходит игрок {current_player}")
+    row, col = get_move(board)
+    make_move(board, row, col, current_player)
+    draw_board(board)
+
