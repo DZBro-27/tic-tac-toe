@@ -83,19 +83,21 @@ def check_win(board, current_player):
 
   # Проверка победного условия по строке  
   for row in board:
-    row_win = True
+    is_row_win = True
 
-    for element in row:
+    for cell in row:
 
-      if element != current_player:
-        row_win = False
+      if cell != current_player:
+        is_row_win = False
         break
 
-    if row_win == True:
+    if is_row_win == True:
       return True
 
   # Проверка победного условия по столбцу
-  
+  #size = len(board)
+  #for col_index in range(size):
+
 
 def run():
     """Запускает основной игровой цикл."""
