@@ -94,9 +94,23 @@ def check_win(board, current_player):
     if is_row_win == True:
       return True
 
+  
   # Проверка победного условия по столбцу
-  #size = len(board)
-  #for col_index in range(size):
+  size = len(board)
+
+  for col_index in range(size):
+    is_col_win = True
+
+    for row_index in range(size):
+
+      if board[row_index][col_index] != current_player:
+        is_col_win = False
+        break
+
+    if is_col_win:
+      return True
+    
+  # Проверка победного условия по диагонали
 
 
 def run():
