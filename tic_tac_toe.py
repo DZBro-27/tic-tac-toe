@@ -136,6 +136,19 @@ def check_win(board, current_player):
   if is_anti_diag_win:
     return True
 
+def check_draw(board):
+  """Проверка ничьей"""
+  
+  is_draw = True
+
+  for row in board:
+    
+    for cell in row:
+
+      if cell == " ":
+        return False
+
+  return True
 
 
 def run():
