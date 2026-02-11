@@ -65,15 +65,6 @@ def get_move(board):
     else:
       return row, col
 
-def switch_player(current_player: str):
-  """Смена текущего игрока."""
-  
-  if current_player == "X":
-    return "O"
-
-  else:
-    return "X"
-
 def make_move(board, row, col, current_player):
   """Выполнение хода игрока."""
   board[row][col] = current_player
@@ -150,18 +141,37 @@ def check_draw(board):
 
   return True
 
+def switch_player(current_player: str):
+  """Смена текущего игрока."""
+  
+  if current_player == "X":
+    return "O"
+
+  else:
+    return "X"
 
 def run():
     """Запускает основной игровой цикл."""
 
     board_size = 3
-    board = create_board(3)
+    board = create_board(board_size)
     current_player = "X"
 
-    #while True:
-    draw_board(board)
-    print("\n" f"Ходит игрок {current_player}")
-    row, col = get_move(board)
-    make_move(board, row, col, current_player)
-    draw_board(board)
+    while True:
+      draw_board(board)
+      print("\n" f"Ходит игрок {current_player}")
+      row, col = get_move(board)
+      make_move(board, row, col, current_player)
+      
+      if check_win(board, current_player):
+        print("\nПобедил игрок ", current_player)
+        draw_board(board)
+        break
+      
+      if check_draw(board):
+        print("Ничья!")
+        draw_board(board)
+        break
 
+      current_player = switch_player(current_player)
+      
