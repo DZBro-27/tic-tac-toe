@@ -96,18 +96,10 @@ def check_win(board, current_player):
     
     
   # Проверка победного условия по основной диагонали
-  is_diag_win = True
-
-  for index in range(size):
-    
-    if board[index][index] != current_player:
-      is_diag_win = False
-      break
-
-  if is_diag_win:
+  if  all(board[index][index] == current_player for index in range(size)):
     return True
   
-  
+
   # Проверка победного условия по побочной диагонали
   if all(board[index][size-1-index] == current_player for index in range(size)):
     return True
