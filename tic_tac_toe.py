@@ -130,16 +130,7 @@ def check_win(board, current_player):
 def check_draw(board):
   """Проверка ничьей"""
   
-  is_draw = True
-
-  for row in board:
-    
-    for cell in row:
-
-      if cell == " ":
-        return False
-
-  return True
+  return all(cell != " " for row in board for cell in row)
 
 def switch_player(current_player: str):
   """Смена текущего игрока."""
@@ -167,11 +158,14 @@ def run():
         print("\nПобедил игрок ", current_player)
         draw_board(board)
         break
+        
       
       if check_draw(board):
         print("Ничья!")
         draw_board(board)
         break
+        
 
       current_player = switch_player(current_player)
-      
+    input("Введите любую клавишу, чтобы выйти...")
+     
