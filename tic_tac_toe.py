@@ -109,15 +109,7 @@ def check_win(board, current_player):
   
   
   # Проверка победного условия по побочной диагонали
-  is_anti_diag_win = True
-
-  for index in range(size):
-
-    if board[index][size-1-index] != current_player:
-      is_anti_diag_win = False
-      break
-
-  if is_anti_diag_win:
+  if all(board[index][size-1-index] == current_player for index in range(size)):
     return True
 
   return False
