@@ -83,15 +83,8 @@ def check_win(board, current_player):
   size = len(board)
 
   for col_index in range(size):
-    is_col_win = True
-
-    for row_index in range(size):
-
-      if board[row_index][col_index] != current_player:
-        is_col_win = False
-        break
-
-    if is_col_win:
+    
+    if all(board[row_index][col_index] == current_player for row_index in range(size)):
       return True
     
     
