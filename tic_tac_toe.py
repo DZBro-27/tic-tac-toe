@@ -77,8 +77,6 @@ def check_win(board, current_player):
 
     if all(cell == current_player for cell in row):
       return True
-    
-  return False
 
   
   # Проверка победного условия по столбцу
@@ -121,6 +119,9 @@ def check_win(board, current_player):
 
   if is_anti_diag_win:
     return True
+
+  return False
+
 
 def check_draw(board):
   """Проверка ничьей"""
