@@ -74,16 +74,11 @@ def check_win(board, current_player):
 
   # Проверка победного условия по строке  
   for row in board:
-    is_row_win = True
 
-    for cell in row:
-
-      if cell != current_player:
-        is_row_win = False
-        break
-
-    if is_row_win == True:
+    if all(cell == current_player for cell in row):
       return True
+    
+  return False
 
   
   # Проверка победного условия по столбцу
